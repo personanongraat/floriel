@@ -1,0 +1,5 @@
+/data/
+/public/uploads/
+.env
+.env.*
+!.env.example
