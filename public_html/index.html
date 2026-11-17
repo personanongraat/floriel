@@ -186,7 +186,7 @@ window.CATALOG = {
 </script>
 <script>
 async function sendFlorielForm(kind, payload) {
-  const response = await fetch('/api/' + kind, {
+  const response = await fetch('/api.php?action=' + kind, {
     method: 'POST',
     headers: {'Content-Type': 'application/json', 'X-Floriel-Request': 'form'},
     body: JSON.stringify(payload)
@@ -226,7 +226,7 @@ window.SHOP_REVIEWS = null;
  const $ = (s,root=document)=>root.querySelector(s);
  const esc = v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const money = v=>new Intl.NumberFormat('ru-RU').format(v)+' ₽';
- const image = id=>id?.startsWith('./photos/') ? id.slice(1) : id?.startsWith('/photos/') || id?.startsWith('/uploads/') ? id : '/assets/images/'+id+'.jpg';
+ const image = id=>id?.startsWith('./photos/') ? id.slice(1) : id?.startsWith('/photos/') || id?.startsWith('/uploads/') || id?.startsWith('/photo.php?id=') ? id : '/assets/images/'+id+'.jpg';
  const storageKey='floriel-cart-v1';
  const c=window.CATALOG, shop=window.SHOP;
  let cart=[], category=c.categories[0], toastTimer, lastFocus, modalView='', pending=false;

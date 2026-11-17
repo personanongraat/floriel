@@ -172,7 +172,7 @@ function writeReceipt($file, array $state): void
     }
 }
 
-function notify(string $kind, array $payload): array
+function notify(string $kind, array $payload, array $config): array
 {
     $id = field($payload, $kind === 'orders' ? 'requestId' : 'orderId', 36);
     if (!preg_match('/\A[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}\z/', $id)) {
@@ -184,10 +184,10 @@ function notify(string $kind, array $payload): array
         ? orderMessages($payload, $id)
         : feedbackMessages($payload, $id, $receipts);
 
-    $token = getenv('FLORIEL_TELEGRAM_TOKEN') ?: '';
-    $chat = getenv('FLORIEL_TELEGRAM_CHAT_ID') ?: '';
-    $to = getenv('FLORIEL_MAIL_TO') ?: '';
-    $from = getenv('FLORIEL_MAIL_FROM') ?: '';
+    $token = (string) ($config['telegram_token'] ?? '');
+    $chat = (string) ($config['telegram_chat_id'] ?? '');
+    $to = (string) ($config['mail_to'] ?? '');
+    $from = (string) ($config['mail_from'] ?? '');
     if (!function_exists('curl_init') || !function_exists('mail') ||
         !preg_match('/\A\d+:[A-Za-z0-9_-]+\z/', $token) || !preg_match('/\A-?\d+\z/', $chat) ||
         !filter_var($to, FILTER_VALIDATE_EMAIL) || !filter_var($from, FILTER_VALIDATE_EMAIL)) {
@@ -237,21 +237,3 @@ function notify(string $kind, array $payload): array
         fclose($file);
     }
 }
-
-try {
-    $kind = $argv[1] ?? '';
-    if (!in_array($kind, ['orders', 'feedback'], true)) {
-        throw new FormError('Форма не найдена.', 404);
-    }
-    $payload = json_decode(stream_get_contents(STDIN), true);
-    if (!is_array($payload)) {
-        throw new FormError('Не удалось прочитать данные формы.', 400);
-    }
-    $response = ['status' => 200, 'body' => notify($kind, $payload)];
-} catch (FormError $error) {
-    $response = ['status' => $error->getCode(), 'body' => ['error' => $error->getMessage()]];
-} catch (Throwable $error) {
-    error_log('Floriel form handler failure: ' . $error::class);
-    $response = ['status' => 500, 'body' => ['error' => 'Не удалось отправить форму. Попробуйте ещё раз.']];
-}
-echo json_encode($response, JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE);

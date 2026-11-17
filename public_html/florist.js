@@ -6,10 +6,12 @@ function installFlorist({catalog, image, refresh}) {
  let editing = false, previewURL;
  const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
- async function request(url, method='GET', data) {
+ async function request(action, method='GET', data, id) {
+  const params = new URLSearchParams({action});
+  if (id) params.set('id',id);
   const headers = method === 'GET' ? {} : {'X-Floriel-Request':'editor'};
   if (data) headers['Content-Type'] = 'application/json';
-  const res = await fetch(url,{method,headers,body:data ? JSON.stringify(data) : undefined,cache:'no-store'});
+  const res = await fetch('/api.php?'+params,{method,headers,body:data ? JSON.stringify(data) : undefined,cache:'no-store'});
   const result = await res.json();
   if (!res.ok) throw Error(result.error);
   return result;
@@ -45,9 +47,9 @@ function installFlorist({catalog, image, refresh}) {
  }
  function login() {
   showForm('Вход для флориста',
-   '<p class="muted">Пароль предпросмотра <code>floriel-demo</code></p><label>Пароль<input name="password" type="password" autocomplete="current-password" required autofocus></label>',
+   '<label>Пароль<input name="password" type="password" autocomplete="current-password" required autofocus></label>',
    'Войти',async form => {
-    const result = await request('/api/login','POST',{password:form.elements.password.value});
+    const result = await request('login','POST',{password:form.elements.password.value});
     dialog.close();
     update(result,'Можно менять букеты прямо в каталоге.');
     $('#catalog').scrollIntoView({block:'start'});
@@ -78,7 +80,7 @@ function installFlorist({catalog, image, refresh}) {
      if (file.size > 5 * 1024 * 1024) throw Error('Максимальный размер фотографии — 5 МБ.');
      body.photo = await photoData(file);
     }
-    const result = await request(product ? '/api/bouquets/'+product.id : '/api/bouquets',product ? 'PUT' : 'POST',body);
+    const result = await request('bouquets',product ? 'PUT' : 'POST',body,product?.id);
     dialog.close();
     $('#filters button')?.click();
     update(result,product ? 'Изменения сохранены.' : 'Букет добавлен.');
@@ -109,7 +111,7 @@ function installFlorist({catalog, image, refresh}) {
   if (action === 'add') return edit();
   if (action === 'exit') {
    try {
-    update(await request('/api/logout','POST'));
+    update(await request('logout','POST'));
     if (location.pathname.startsWith('/admin')) history.replaceState(null,'','/#catalog');
    } catch (e) { message(e.message); }
   }
@@ -119,21 +121,21 @@ function installFlorist({catalog, image, refresh}) {
   if (!target || !editing) return;
   const product = catalog.products.find(p => p.id === target.dataset.editId);
   if (!product) return;
-  const action = target.dataset.editAction, endpoint = '/api/bouquets/' + product.id;
+  const action = target.dataset.editAction;
   if (action === 'edit') return edit(product);
   if (action === 'remove') return showForm('Удалить букет?', '<p>«'+esc(product.name)+'» исчезнет из каталога.</p>','Удалить',async () => {
-   const result = await request(endpoint,'DELETE');
+   const result = await request('bouquets','DELETE',undefined,product.id);
    dialog.close();
    update(result,'Букет удалён.');
   });
   target.disabled = true;
   try {
    const show = product.inCatalog === false;
-   update(await request(endpoint,'PUT',{...product,inCatalog:show}),show ? 'Букет снова в каталоге.' : 'Букет скрыт.');
+   update(await request('bouquets','PUT',{...product,inCatalog:show},product.id),show ? 'Букет снова в каталоге.' : 'Букет скрыт.');
   } catch (e) { message(e.message); }
   finally { target.disabled = false; }
  });
- request('/api/catalog').then(result => {
+ request('catalog').then(result => {
   update(result);
   if (!editing && location.pathname.startsWith('/admin')) login();
  }).catch(() => message('Не удалось загрузить каталог. Обнови страницу.'));
