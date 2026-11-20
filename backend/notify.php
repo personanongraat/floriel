@@ -191,7 +191,7 @@ function notify(string $kind, array $payload, array $config): array
     if (!function_exists('curl_init') || !function_exists('mail') ||
         !preg_match('/\A\d+:[A-Za-z0-9_-]+\z/', $token) || !preg_match('/\A-?\d+\z/', $chat) ||
         !filter_var($to, FILTER_VALIDATE_EMAIL) || !filter_var($from, FILTER_VALIDATE_EMAIL)) {
-        throw new FormError('Отправка пока недоступна. Позвоните в салон по номеру +7 993 605 0483.', 503);
+        throw new FormError('Отправка пока недоступна. Позвоните в салон по номеру +7 (993) 605-04-83.', 503);
     }
 
     if (!is_dir($receipts) && !@mkdir($receipts, 0700, true) && !is_dir($receipts)) {
