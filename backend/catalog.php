@@ -13,7 +13,14 @@ function readCatalog(): array
     if (!is_file($file)) {
         return seedCatalog()['products'];
     }
-    return json_decode(file_get_contents($file), true, flags: JSON_THROW_ON_ERROR);
+    $products = json_decode(file_get_contents($file), true, flags: JSON_THROW_ON_ERROR);
+    foreach ($products as &$product) {
+        if (($product['category'] ?? '') === 'Сборные') {
+            $product['category'] = 'Композиции';
+        }
+    }
+    unset($product);
+    return $products;
 }
 
 function catalogResponse(bool $editor, ?array $products = null): array
