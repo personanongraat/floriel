@@ -28,7 +28,7 @@ replaceRequired(/ const image = id=>[^\r\n]+;/,
   ' const image = id => ' + JSON.stringify(base) + ' + (String(id).includes("photos/") ? String(id).replace(/^.*?photos\\//, "photos/") : "assets/images/" + id + ".jpg");');
 html = html.replace(/(["'(])\/(?=(?:photos|assets|fonts)\/|(?:hero-fonts|florist)\.(?:css|js))/g, '$1' + base);
 replaceRequired('Отправляя заказ, вы передаёте данные мастерской для его обработки.',
-  'Демонстрационная версия. Отправка заявок появится после размещения на PHP-хостинге. Заказать сейчас: <a href="tel:+79936050483">+7 993 605 0483</a>.');
+  'Демонстрационная версия. Отправка заявок появится после размещения на PHP-хостинге. Заказать сейчас: <a href="tel:+79936050483">+7 (993) 605-04-83</a>.');
 replaceRequired('<button class="button full" type="submit">Отправить заказ</button>',
   '<button class="button full" type="submit" disabled>Отправка пока недоступна</button>');
 replaceRequired('</head>', '<style>#florist-bar,#florist-dialog{display:none}</style></head>');
