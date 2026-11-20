@@ -36,3 +36,39 @@ jobs:
       - name: Deploy GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Verify published storefront
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          node --input-type=module <<'NODE'
+          import vm from 'node:vm';
+          const base = process.env.PAGE_URL;
+          let response;
+          for (let attempt = 0; attempt < 6; attempt++) {
+            response = await fetch(base);
+            if (response.ok) break;
+            await new Promise(resolve => setTimeout(resolve, 5000));
+          }
+          if (!response?.ok) throw Error('Published page is not reachable: ' + response?.status);
+          const html = await response.text();
+          if (!html.includes('Цветы на Малой Ордынке') || !html.includes('disabled>Отправка пока недоступна')) {
+            throw Error('Unexpected storefront content');
+          }
+          let scriptCount = 0;
+          for (const match of html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)) {
+            new vm.Script(match[1]);
+            scriptCount++;
+          }
+          if (!scriptCount) throw Error('Storefront scripts missing');
+          const assets = ['hero-fonts.css', 'florist.css', 'fonts/geist-latin.woff2'];
+          for (const match of html.matchAll(/["'(](\/floriel\/photos\/[^"'()\s]+)/g)) {
+            assets.push(match[1]);
+          }
+          for (const asset of new Set(assets)) {
+            const url = new URL(asset, base);
+            const result = await fetch(url);
+            if (!result.ok) throw Error('Asset failed: ' + url + ' (' + result.status + ')');
+          }
+          console.log('Verified live page, ' + scriptCount + ' inline scripts, styles, font and all referenced shop photos: ' + base);
+          NODE
