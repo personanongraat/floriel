@@ -2,7 +2,7 @@
 function installFlorist({catalog, image, refresh}) {
  const $ = (selector, root=document) => root.querySelector(selector);
  const bar = $('#florist-bar'), dialog = $('#florist-dialog');
- const categories = catalog.categories.slice(1);
+ const categories = catalog.categories.slice();
  let editing = false, previewURL;
  const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 

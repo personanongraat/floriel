@@ -146,8 +146,8 @@ footer{background:#e4efe0}
 <main>
 <section class="hero container" aria-labelledby="hero-title"><figure class="hero-backdrop"><img src="/photos/5393410808819163352.jpg" alt="Цветочная витрина салона «Флориэль»" fetchpriority="high"></figure><div class="hero-copy"><h1 id="hero-title">Цветы на Малой Ордынке</h1><p class="hero-lead">Готовые букеты и композиции на заказ.</p><div class="hero-actions"><a class="button" href="#catalog">Выбрать букет</a><a class="text-link" href="#builder">Собрать свой</a></div><p class="contact-note">Малая Ордынка, 3 <span aria-hidden="true">·</span> <a href="#contacts">Контакты</a></p></div></section>
 <div class="container service-strip"><span><i>01</i> Готовые букеты и свой состав</span><span><i>02</i> Доставка или самовывоз</span><span><i>03</i> Открытка с вашими словами</span></div>
-<section class="container catalog section" id="catalog"><div class="section-head"><div><p class="eyebrow">КОЛЛЕКЦИЯ МАСТЕРСКОЙ</p><h2>Букеты Флориэль</h2></div></div><div id="florist-bar" class="florist-bar"><p role="status">Загружаем каталог…</p></div><div class="catalog-controls"><div id="filters" class="filters" aria-label="Категории"></div><div class="catalog-tools"><fieldset class="price-filter"><legend>Цена: <output id="price-range-value" for="price-max">Загружаем…</output></legend><div class="price-ranges"><input id="price-max" type="range" min="0" max="0" step="1" value="0" disabled aria-label="Максимальная цена букета" aria-describedby="price-bounds"><div id="price-bounds" class="price-bounds"><span id="price-min-label"></span><span id="price-max-label"></span></div></div></fieldset><label class="sort-label">Сортировать <select id="sort"><option value="default">По умолчанию</option><option value="asc">Сначала дешевле</option><option value="desc">Сначала дороже</option></select></label></div></div><div class="product-grid" id="products"></div><p class="catalog-note">Фотографии из подборки салона. Цены и названия приведены для примера. Актуальный ассортимент уточняйте у флориста.</p></section>
-<section class="builder-section" id="builder"><div class="container section"><div class="section-head"><div><p class="eyebrow">ВАШ БУКЕТ - ВАШИ ПРАВИЛА</p><h2>Соберите что-то личное</h2></div><p class="muted">Выберите цветы, упаковку и маленькое дополнение.<br>Мы посчитаем всё сразу.</p></div><div class="builder-layout"><div><div class="step-title"><span>1</span><h3>Начните с цветов</h3></div><div class="flower-grid" id="flowers"></div><p class="small muted">На фото - примеры цветов в составе букетов.</p><div class="builder-options"><label>2. Упаковка<select id="packaging"></select></label><label>3. Открытка<select id="greeting"></select></label></div></div><aside class="builder-summary"><span class="eyebrow">ВАШ СОСТАВ</span><h3>Особенный, потому что ваш</h3><div id="builder-lines" aria-live="polite"></div><div class="total"><span>Стоимость букета</span><strong id="builder-total">0 ₽</strong></div><button class="button full" id="add-custom" disabled>Добавить в корзину</button><p class="small muted">Выберите хотя бы один цветок. Доставка рассчитывается в корзине.</p></aside></div></div></section>
+<section class="container catalog section" id="catalog"><div class="section-head"><div><p class="eyebrow">КОЛЛЕКЦИЯ МАСТЕРСКОЙ</p><h2>Букеты Флориэль</h2></div></div><div id="florist-bar" class="florist-bar"><p role="status">Загружаем каталог…</p></div><div class="catalog-controls"><div id="filters" class="filters" aria-label="Категории"></div><div class="catalog-tools"><fieldset class="price-filter"><legend>Цена: <output id="price-range-value" for="price-max">Загружаем…</output></legend><div class="price-ranges"><input id="price-max" type="range" min="0" max="0" step="1" value="0" disabled aria-label="Максимальная цена букета" aria-describedby="price-bounds"><div id="price-bounds" class="price-bounds"><span id="price-min-label"></span><span id="price-max-label"></span></div></div></fieldset><label class="sort-label">Сортировать <select id="sort"><option value="default">По умолчанию</option><option value="asc">Сначала дешевле</option><option value="desc">Сначала дороже</option></select></label></div></div><div class="product-grid" id="products"></div><p class="catalog-note">Фотографии, состав и цены предоставлены салоном. Наличие цветов уточняйте у флориста.</p></section>
+<section class="builder-section" id="builder"><div class="container section"><div class="section-head"><div><p class="eyebrow">ВАШ БУКЕТ - ВАШИ ПРАВИЛА</p><h2>Соберите что-то личное</h2></div><p class="muted">Выберите цветы, упаковку и маленькое дополнение.<br>Мы посчитаем всё сразу.</p></div><div class="builder-layout"><div><div class="step-title"><span>1</span><h3>Начните с цветов</h3></div><div class="flower-grid" id="flowers"></div><p class="small muted">На фото — цветы из ассортимента салона. Цена указана за одну штуку.</p><div class="builder-options"><label>2. Упаковка<select id="packaging"></select></label><label>3. Открытка<select id="greeting"></select></label></div></div><aside class="builder-summary"><span class="eyebrow">ВАШ СОСТАВ</span><h3>Особенный, потому что ваш</h3><div id="builder-lines" aria-live="polite"></div><div class="total"><span>Стоимость букета</span><strong id="builder-total">0 ₽</strong></div><button class="button full" id="add-custom" disabled>Добавить в корзину</button><p class="small muted">Выберите хотя бы один цветок. Доставка рассчитывается в корзине.</p></aside></div></div></section>
 <section class="container section delivery" id="delivery"><div><p class="eyebrow">ОТ МАСТЕРСКОЙ ДО ВАШЕЙ ДВЕРИ</p><h2>Позаботимся о деталях</h2></div><div class="info-columns"><article><span class="info-num">01 / ДОСТАВКА</span><h3>В удобное время</h3><p id="delivery-text"></p><p id="delivery-timing" class="muted"></p></article><article><span class="info-num">02 / САМОВЫВОЗ</span><h3>Загляните за цветами</h3><p data-bind="pickupText"></p><p><span data-bind="address"></span><br><span data-bind="hours"></span></p></article><article><span class="info-num">03 / ОПЛАТА</span><h3>Всё понятно заранее</h3><p data-bind="paymentText"></p></article></div></section>
 <section class="reviews-section" id="reviews" aria-labelledby="reviews-heading"><div class="container section"><div class="section-head"><div><p class="eyebrow">СЛОВА ПОКУПАТЕЛЕЙ</p><h2 id="reviews-heading">Отзывы в 2ГИС</h2></div><a class="button secondary" id="reviews-source" target="_blank" rel="noopener noreferrer">Все отзывы в 2ГИС</a></div><div class="review-source-info"><span class="source-badge">2ГИС</span><div><h3 id="review-business"></h3><p id="review-address"></p></div></div><div class="reviews-grid" id="review-cards"></div><p class="small muted reviews-note" id="reviews-note"></p></div></section>
 </main>
@@ -189,25 +189,123 @@ window.SHOP = {
 </script>
 <script>
 window.CATALOG = {
-  categories: ['Букеты', 'Композиции', 'Розы', 'Нежные оттенки'],
-  products: [
-    {id:'p1', name:'Тёплые слова', price:3900, category:'Композиции', image:'/photos/5393410808819163346.jpg', composition:'Красные и бордовые хризантемы', tag:'Сборный букет'},
-    {id:'p2', name:'Лёгкое утро', price:3200, category:'Композиции', image:'/photos/5393410808819163348.jpg', composition:'Гортензия с зелёно-бордовыми лепестками и красные ягоды'},
-    {id:'p3', name:'Нежный жест', price:4500, category:'Нежные оттенки', image:'/photos/5393410808819163347.jpg', composition:'Белые гортензии и хризантемы', tag:'Нежные оттенки'},
-    {id:'p4', name:'Ближе к сердцу', price:5100, category:'Розы', image:'24987510', composition:'Красные розы, декоративная зелень', inCatalog:false},
-    {id:'p5', name:'В розовом', price:4200, category:'Розы', image:'/photos/5393410808819163349.jpg', composition:'Персиковые розы и нежно-розовые гортензии'},
-    {id:'p6', name:'Тихий день', price:3700, category:'Нежные оттенки', image:'/photos/5393410808819163350.jpg', composition:'Сиреневые цветы и декоративная капуста'},
-    {id:'p7', name:'Светлое чувство', price:5800, category:'Нежные оттенки', image:'27670902', composition:'Сборный букет в розово-белой гамме', inCatalog:false},
-    {id:'p8', name:'Без лишних слов', price:4600, category:'Розы', image:'6414329', composition:'Красные розы с зеленью; ваза в стоимость не входит', inCatalog:false}
+  "categories": [
+    "Букеты",
+    "Композиции"
   ],
-  flowers: [
-    {id:'pink', name:'Ранункулюс', price:250, image:'20440303', note:'мягкий розовый'},
-    {id:'red', name:'Красная роза', price:280, image:'24987510', note:'насыщенный бордовый'},
-    {id:'peony', name:'Пион', price:550, image:'9055981', note:'розовый и белый'},
-    {id:'mix', name:'Сезонный микс', price:220, image:'29457902', note:'на усмотрение флориста'}
+  "products": [
+    {
+      "id": "bouquet-57",
+      "name": "Букет 57",
+      "price": 8700,
+      "category": "Букеты",
+      "image": "/photos/5188541775038062721.jpg",
+      "composition": "Состав: гортензия, тюльпан, роза кустовая пионовидная, матиолла одноголовая, бруния, эвкалипт. Упаковка: плёнка матовая."
+    },
+    {
+      "id": "composition-51",
+      "name": "Композиция 51",
+      "price": 8500,
+      "category": "Композиции",
+      "image": "/photos/5188541775038062680.jpg",
+      "composition": "Состав: роза кустовая, роза одноголовая, тюльпан, ваксфлауэр, лимониум, эвкалипт, скиммия. Упаковка: коробка шляпная."
+    },
+    {
+      "id": "composition-52",
+      "name": "Композиция 52",
+      "price": 5000,
+      "category": "Композиции",
+      "image": "/photos/5188541775038062683.jpg",
+      "composition": "Состав: роза кустовая, лизиантус, эвкалипт. Упаковка: коробка шляпная."
+    },
+    {
+      "id": "composition-53",
+      "name": "Композиция 53",
+      "price": 7500,
+      "category": "Композиции",
+      "image": "/photos/5188541775038062690.jpg",
+      "composition": "Состав: роза одноголовая, тюльпан, матиолла кустовая, статица. Упаковка: коробка шляпная."
+    },
+    {
+      "id": "composition-54",
+      "name": "Композиция 54",
+      "price": 15000,
+      "category": "Композиции",
+      "image": "/photos/5188541775038062693.jpg",
+      "composition": "Состав: гортензия, мимоза, сирень, тюльпан, фаленопсис, хелеборус, ранункулюс, эвкалипт. Упаковка: коробка шляпная."
+    },
+    {
+      "id": "composition-55",
+      "name": "Композиция 55",
+      "price": 6500,
+      "category": "Композиции",
+      "image": "/photos/5188541775038062701.jpg",
+      "composition": "Состав: георгин, роза кустовая пионовидная, лизиантус, альстромерия, эвкалипт, куэркус. Упаковка: корзина плетёная."
+    },
+    {
+      "id": "composition-56",
+      "name": "Композиция 56",
+      "price": 30000,
+      "category": "Композиции",
+      "image": "/photos/5188541775038062705.jpg",
+      "composition": "Состав: гортензия, ранункулюс, вибурнум, гениста, лизиантус, гиацинт, роза одноголовая, роза кустовая, клематис, хелеборус, эвкалипт, сухоцветы. Упаковка: корзина плетёная."
+    }
   ],
-  packaging: [{id:'paper', name:'Матовая бумага',price:250},{id:'kraft',name:'Крафт',price:180},{id:'none',name:'Только лента',price:0}],
-  cards: [{id:'none',name:'Без открытки',price:0},{id:'card',name:'Добавить открытку',price:150}]
+  "flowers": [
+    {
+      "id": "chrysanthemum",
+      "name": "Хризантема кустовая",
+      "price": 550,
+      "image": "/photos/5188541775038062855.jpg"
+    },
+    {
+      "id": "hydrangea-colombia",
+      "name": "Гортензия Колумбия",
+      "price": 850,
+      "image": "/photos/5188541775038062858.jpg"
+    },
+    {
+      "id": "matthiola",
+      "name": "Матиолла кустовая",
+      "price": 550,
+      "image": "/photos/5188541775038062862.jpg"
+    },
+    {
+      "id": "lisianthus",
+      "name": "Лизиантус",
+      "price": 650,
+      "image": "/photos/5188541775038062865.jpg"
+    }
+  ],
+  "packaging": [
+    {
+      "id": "paper",
+      "name": "Матовая бумага",
+      "price": 250
+    },
+    {
+      "id": "kraft",
+      "name": "Крафт",
+      "price": 180
+    },
+    {
+      "id": "none",
+      "name": "Только лента",
+      "price": 0
+    }
+  ],
+  "cards": [
+    {
+      "id": "none",
+      "name": "Без открытки",
+      "price": 0
+    },
+    {
+      "id": "card",
+      "name": "Добавить открытку",
+      "price": 150
+    }
+  ]
 };
 
 </script>
@@ -292,7 +390,7 @@ window.SHOP_REVIEWS = null;
  $('#modal').addEventListener('cancel',e=>{if(pending)e.preventDefault();});
  $('#modal').addEventListener('close',()=>{modalView='';lastFocus?.focus();});
  $('#modal').addEventListener('click',e=>{if(e.target===$('#modal')){const r=$('#modal').getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)close();}});
- function renderProducts(){syncPriceFilter();let rows=c.products.filter(p=>(florist.editing()||p.inCatalog!==false)&&(category===c.categories[0]||p.category===category||(category==='Композиции'&&p.category==='Сборные'))&&(florist.editing()||p.price<=Number($('#price-max').value)));const sort=$('#sort').value;if(sort!=='default')rows=[...rows].sort((a,b)=>sort==='asc'?a.price-b.price:b.price-a.price);$('#products').innerHTML=rows.length ? rows.map(p=>`<article class="product"><button class="product-image" data-detail="${p.id}" aria-label="Подробнее: ${esc(p.name)}">${photo(p,'loading="lazy" width="500" height="575"')}${p.tag?`<span class="tag">${esc(p.tag)}</span>`:''}</button><button class="product-name" data-detail="${p.id}">${esc(p.name)}</button><p class="composition">${esc(p.composition)}</p><div class="product-bottom"><strong class="price">${money(p.price)}</strong><div class="product-control" data-product-control="${p.id}">${productControl(p)}</div></div>${florist.controls(p)}</article>`).join('') : '<div class="catalog-empty"><p>По выбранной категории и цене ничего не найдено.</p><button type="button" class="button secondary" id="reset-filters">Сбросить фильтры</button></div>';}
+ function renderProducts(){syncPriceFilter();let rows=c.products.filter(p=>(florist.editing()||p.inCatalog!==false)&&(p.category===category)&&(florist.editing()||p.price<=Number($('#price-max').value)));const sort=$('#sort').value;if(sort!=='default')rows=[...rows].sort((a,b)=>sort==='asc'?a.price-b.price:b.price-a.price);$('#products').innerHTML=rows.length ? rows.map(p=>`<article class="product"><button class="product-image" data-detail="${p.id}" aria-label="Подробнее: ${esc(p.name)}">${photo(p,'loading="lazy" width="500" height="575"')}${p.tag?`<span class="tag">${esc(p.tag)}</span>`:''}</button><button class="product-name" data-detail="${p.id}">${esc(p.name)}</button><p class="composition">${esc(p.composition)}</p><div class="product-bottom"><strong class="price">${money(p.price)}</strong><div class="product-control" data-product-control="${p.id}">${productControl(p)}</div></div>${florist.controls(p)}</article>`).join('') : '<div class="catalog-empty"><p>По выбранной категории и цене ничего не найдено.</p><button type="button" class="button secondary" id="reset-filters">Сбросить фильтры</button></div>';}
  $('#filters').innerHTML=c.categories.map((cat,i)=>`<button type="button" data-category="${esc(cat)}" aria-pressed="${i===0}">${esc(cat)}</button>`).join('');
  $('#filters').onclick=e=>{const b=e.target.closest('[data-category]');if(!b)return;category=b.dataset.category;$('#filters').querySelectorAll('button').forEach(btn=>btn.setAttribute('aria-pressed',String(btn===b)));renderProducts();};
  $('#sort').onchange=renderProducts;
