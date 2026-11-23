@@ -24,5 +24,3 @@
 .florist-error{color:#a1253b;font-size:13px;margin:9px 0 0}
 .florist-form-actions{margin-top:16px}
 
-/* Preserve complete uploaded photos in the editor preview. */
-.florist-photo img{object-fit:contain;background:#edf2e9}
