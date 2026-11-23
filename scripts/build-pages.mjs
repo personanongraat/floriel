@@ -26,12 +26,17 @@ replaceRequired(/<script>\s*async function sendFlorielForm[\s\S]*?<\/script>/,
   '<script>window.orderAdapter={submit:async()=>{throw Error("Это демонстрация. Заказы принимаются по телефону.");},feedback:async()=>{throw Error("Отправка доступна на основном сайте.");}};</script>');
 replaceRequired(/ const image = id=>[^\r\n]+;/,
   ' const image = id => ' + JSON.stringify(base) + ' + (String(id).includes("photos/") ? String(id).replace(/^.*?photos\\//, "photos/") : "assets/images/" + id + ".jpg");');
-html = html.replace(/(["'(])\/(?=(?:photos|assets|fonts)\/|(?:hero-fonts|florist)\.(?:css|js))/g, '$1' + base);
+html = html.replace(/(["'(])\/(?=(?:photos|assets|fonts)\/|(?:hero-fonts|florist)\.(?:css|js)|(?:privacy|consent)\.html)/g, '$1' + base);
 replaceRequired('Отправляя заказ, вы передаёте данные мастерской для его обработки.',
   'Демонстрационная версия. Отправка заявок появится после размещения на PHP-хостинге. Заказать сейчас: <a href="tel:+79936050483">+7 (993) 605-04-83</a>.');
 replaceRequired('<button class="button full" type="submit">Отправить заказ</button>',
   '<button class="button full" type="submit" disabled>Отправка пока недоступна</button>');
 replaceRequired('</head>', '<style>#florist-bar,#florist-dialog{display:none}</style></head>');
 await writeFile(path.join(output, 'index.html'), html);
+for (const name of ['privacy.html','consent.html']) {
+ let legal = await readFile(path.join(source,name),'utf8');
+ legal = legal.replace(/href="\/(privacy\.html|consent\.html)?"/g, (_,page) => 'href="' + base + (page || '') + '"');
+ await writeFile(path.join(output,name),legal);
+}
 await writeFile(path.join(output, '.nojekyll'), '');
 console.log('Pages storefront ready:', output, 'base:', base);

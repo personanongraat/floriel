@@ -34,6 +34,10 @@ function orderMessages(array $input, string $id): array
         throw new FormError('Не удалось принять данные формы.', 422);
     }
 
+    if (($customer['consent'] ?? null) !== '2026-11-23') {
+        throw new FormError('Подтвердите согласие на обработку персональных данных.', 422);
+    }
+
     $name = field($customer, 'name', 80);
     $phone = field($customer, 'phone', 30);
     if (!preg_match('/\A\+?[\d ()-]+\z/', $phone) || !preg_match('/\A\d{10,15}\z/', preg_replace('/\D/', '', $phone))) {
@@ -209,7 +213,7 @@ function notify(string $kind, array $payload, array $config): array
         $fingerprint = hash('sha256', $email);
         $stored = stream_get_contents($file);
         $state = $stored === ''
-            ? ['fingerprint' => $fingerprint, 'telegram' => false, 'email' => false]
+            ? array_merge(['fingerprint' => $fingerprint, 'telegram' => false, 'email' => false], $kind === 'orders' ? ['consent' => ['version' => '2026-11-23', 'accepted_at' => gmdate('c')]] : [])
             : json_decode($stored, true, flags: JSON_THROW_ON_ERROR);
         if ($state['fingerprint'] !== $fingerprint) {
             throw new FormError('Форма уже отправлялась с другими данными.', 409);
